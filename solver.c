@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char		**ft_reset(t_tetri *list, char **result, int max)
+#include "fillit.h"
+
+static char	**ft_reset(t_tetri *list, char **result, int max)
 {
 	int		x;
 	int		y;
@@ -30,7 +32,7 @@ char		**ft_reset(t_tetri *list, char **result, int max)
 	return (result);
 }
 
-char		**ft_solve(t_tetri *list, char **result, int max)
+static char	**ft_solve(t_tetri *list, char **result, int max)
 {
 	int		x;
 	int		y;
@@ -65,7 +67,7 @@ char		**ft_result(t_tetri *list, int max)
 	result = NULL;
 	while (!result)
 	{
-		result = ft_gen_map(result, max);
+		result = ft_gen_map(max);
 		result = ft_solve(list, result, max);
 		max++;
 	}

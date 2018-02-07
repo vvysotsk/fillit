@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
+
 t_tetri	*ft_get_xy(t_tetri *list, char **ar_str)
 {
 	int	index;
@@ -73,27 +75,4 @@ t_tetri	*ft_new_xy(t_tetri *list, int x, int y)
 		count--;
 	}
 	return (list);
-}
-
-char	**ft_gen_map(char **map, int max)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	if (!(map = (char **)malloc((max + 1))))
-		return (NULL);
-	while (y < max)
-	{
-		map[y] = ft_strnew(max);
-		x = 0;
-		while (x < max)
-		{
-			map[y][x] = '.';
-			x++;
-		}
-		y++;
-	}
-	map[y] = NULL;
-	return (map);
 }

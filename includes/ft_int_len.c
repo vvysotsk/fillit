@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_int_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2018/01/17 18:05:25 by vvysotsk          #+#    #+#             */
+/*   Updated: 2018/01/17 18:23:27 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+int		ft_int_len(int n)
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
+	int	counter;
+	int	result;
 
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
+	counter = 0;
+	result = n;
+	if (result < 0 || result == 0)
 	{
-		ft_putstr("usage: ./fillit map_file");
-		return (0);
+		counter++;
+		result = -result;
 	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
-	return (0);
+	while (result >= 1)
+	{
+		result = result / 10;
+		counter++;
+	}
+	return (counter);
 }

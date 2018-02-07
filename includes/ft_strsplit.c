@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2018/01/17 15:30:08 by vvysotsk          #+#    #+#             */
+/*   Updated: 2018/01/17 19:22:53 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+char		**ft_strsplit(char const *s, char c)
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
+	int		str_count;
+	char	**ar_str;
 
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
-	{
-		ft_putstr("usage: ./fillit map_file");
+	if (!s)
+		return (NULL);
+	str_count = ft_count_str(s, c);
+	ar_str = (char **)malloc(sizeof(char *) * (str_count + 1));
+	if (!ar_str)
 		return (0);
-	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
-	return (0);
+	ar_str = ft_save_str(ar_str, s, c, str_count);
+	if (!ar_str)
+		return (NULL);
+	ar_str[str_count] = NULL;
+	return (ar_str);
 }

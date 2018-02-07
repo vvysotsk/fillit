@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2017/12/21 16:04:22 by vvysotsk          #+#    #+#             */
+/*   Updated: 2017/12/21 16:04:23 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+int			ft_strncmp(const char *s1, const char *s2, size_t len)
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
+	size_t	j;
 
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
-	{
-		ft_putstr("usage: ./fillit map_file");
+	j = 0;
+	if (len == 0)
 		return (0);
+	while (*s1 && *s2 && *s1 == *s2 && j < len - 1)
+	{
+		s1++;
+		s2++;
+		j++;
 	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
-	return (0);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

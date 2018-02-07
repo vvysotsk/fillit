@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2017/12/21 16:02:13 by vvysotsk          #+#    #+#             */
+/*   Updated: 2018/01/17 19:04:22 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+char	*ft_strcat(char *dest, const char *src)
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
+	int	index1;
+	int	index2;
 
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
+	index1 = ft_strlen(dest);
+	index2 = 0;
+	while (src[index2] != '\0')
 	{
-		ft_putstr("usage: ./fillit map_file");
-		return (0);
+		dest[index1] = src[index2];
+		++index1;
+		++index2;
 	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
-	return (0);
+	dest[index1] = '\0';
+	return (dest);
 }

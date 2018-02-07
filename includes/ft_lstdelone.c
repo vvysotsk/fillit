@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2018/01/17 15:48:49 by vvysotsk          #+#    #+#             */
+/*   Updated: 2018/01/17 18:39:53 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t))
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
-
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
+	if (*alst)
 	{
-		ft_putstr("usage: ./fillit map_file");
-		return (0);
+		(del)((*alst)->content, (*alst)->content_size);
+		ft_memdel((void**)alst);
 	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
-	return (0);
 }

@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_max_square(t_tetri *list)
+#include "fillit.h"
+
+int			ft_max_square(t_tetri *list)
 {
-	int	counter;
-	int	max;
+	int		counter;
+	int		max;
 
 	counter = 0;
 	max = 2;
@@ -27,23 +29,26 @@ int		ft_max_square(t_tetri *list)
 	return (max);
 }
 
-char	**ft_gen_map(char **map, int max)
+char		**ft_gen_map(int max)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	**map;
 
 	y = 0;
-	if (!(map = (char **)malloc((max + 1))))
-		return (NULL);
+	if (!(map = (char **)malloc(sizeof(char*) * (max + 1))))
+		ft_error();
 	while (y < max)
 	{
-		map[y] = ft_strnew(max);
 		x = 0;
+		if(!(map[y] = (char*)malloc(sizeof(char) * max + 1)))
+			ft_error();
 		while (x < max)
 		{
 			map[y][x] = '.';
 			x++;
 		}
+		map[y][x] = '\0';
 		y++;
 	}
 	map[y] = NULL;

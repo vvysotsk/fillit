@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_structure(char *str, int index)
+#include "fillit.h"
+
+static char	*ft_structure(char *str, int index)
 {
 	if (str[index] == '#')
 	{
@@ -40,10 +42,10 @@ char	*ft_structure(char *str, int index)
 	return (str);
 }
 
-int		ft_count_plus(char *str)
+static int	ft_count_plus(char *str)
 {
-	int	counter;
-	int	index;
+	int		counter;
+	int		index;
 
 	index = 0;
 	counter = 0;
@@ -56,9 +58,9 @@ int		ft_count_plus(char *str)
 	return (counter);
 }
 
-void	ft_check(char *str)
+void		ft_check(char *str)
 {
-	int	index;
+	int		index;
 
 	index = 0;
 	while (str[index] && str[index] != '#')
@@ -76,9 +78,9 @@ void	ft_check(char *str)
 	}
 }
 
-int		ft_check_map(t_tetri *list, char **result, int max)
+int			ft_check_map(t_tetri *list, char **result, int max)
 {
-	int	count;
+	int		count;
 
 	count = 0;
 	while (count < 4)

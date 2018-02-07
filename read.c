@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int			ft_count_tetri(const char *str)
+#include "fillit.h"
+
+static int		ft_count_tetri(const char *str)
 {
-	int		dot;
-	int		sharp;
-	int		end_line;
-	int		index;
+	int			dot;
+	int			sharp;
+	int			end_line;
+	int			index;
 
 	index = 0;
 	dot = 0;
@@ -38,11 +40,11 @@ int			ft_count_tetri(const char *str)
 	return (sharp / 4);
 }
 
-char		**ft_set_char(t_tetri *list, char **result, int max)
+char			**ft_set_char(t_tetri *list, char **result, int max)
 {
-	int		x;
-	int		y;
-	int		index;
+	int			x;
+	int			y;
+	int			index;
 
 	y = 0;
 	index = 0;
@@ -65,19 +67,19 @@ char		**ft_set_char(t_tetri *list, char **result, int max)
 	return (result);
 }
 
-t_tetri		*ft_coordinates(t_tetri *list)
+static t_tetri	*ft_coordinates(t_tetri *list)
 {
 	list = ft_get_xy(list, ft_strsplit(list->str, '\n'));
 	return (list);
 }
 
-t_tetri		*ft_save_block(const char *str)
+t_tetri			*ft_save_block(const char *str)
 {
-	int		count_tetri;
-	int		index;
-	char	c;
-	t_tetri	*temp;
-	t_tetri	*buff;
+	int			count_tetri;
+	int			index;
+	char		c;
+	t_tetri		*temp;
+	t_tetri		*buff;
 
 	count_tetri = ft_count_tetri(str);
 	index = 0;
@@ -101,11 +103,11 @@ t_tetri		*ft_save_block(const char *str)
 	return (buff);
 }
 
-char		*ft_reading(char *str)
+char			*ft_reading(char *str)
 {
-	int		fd;
-	int		index;
-	char	*buffer;
+	int			fd;
+	int			index;
+	char		*buffer;
 
 	index = 0;
 	fd = open(str, O_RDONLY);

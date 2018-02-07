@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vvysotsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/02 16:41:52 by vvysotsk          #+#    #+#             */
-/*   Updated: 2018/02/02 16:41:53 by vvysotsk         ###   ########.fr       */
+/*   Created: 2017/12/21 16:03:35 by vvysotsk          #+#    #+#             */
+/*   Updated: 2018/01/17 19:31:05 by vvysotsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-void	ft_error(void)
+char		*ft_strrchr(const char *s, int c)
 {
-	write(1, "error\n", 6);
-	exit (0);
-}
+	size_t	i;
 
-int main(int argc, char **argv)
-{
-	t_tetri	*list;
-	char	*reading;
-	char	**result;
-
-	if (argc != 2)
+	i = ft_strlen(s);
+	while (i > 0)
 	{
-		ft_putstr("usage: ./fillit map_file");
-		return (0);
+		if (*(s + i) == c)
+			return ((char *)s + i);
+		i--;
 	}
-	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
-	result = ft_result(list, ft_max_square(list));
-	free(list);
-	while (*result)
-		ft_putendl(*result++);
+	if (*s == c)
+		return ((char *)s + i);
 	return (0);
 }
