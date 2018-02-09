@@ -12,6 +12,27 @@
 
 #include "fillit.h"
 
+int			ft_check_map(t_tetri *list, char **result, int max)
+{
+	int		count;
+
+	count = 0;
+	while (count < 4)
+	{
+		if ((list->y[count] >= 0 && list->y[count] < max) &&
+			(list->x[count] >= 0 && list->x[count] < max) &&
+			result[list->y[count]][list->x[count]] == '.')
+		{
+			count++;
+			if (count == 4)
+				return (0);
+		}
+		else
+			break ;
+	}
+	return (1);
+}
+
 int			ft_max_square(t_tetri *list)
 {
 	int		counter;
@@ -41,7 +62,7 @@ char		**ft_gen_map(int max)
 	while (y < max)
 	{
 		x = 0;
-		if(!(map[y] = (char*)malloc(sizeof(char) * max + 1)))
+		if (!(map[y] = (char*)malloc(sizeof(char) * max + 1)))
 			ft_error();
 		while (x < max)
 		{

@@ -73,16 +73,14 @@ static t_tetri	*ft_coordinates(t_tetri *list)
 	return (list);
 }
 
-t_tetri			*ft_save_block(const char *str)
+t_tetri			*ft_save_block(const char *str, int index)
 {
 	int			count_tetri;
-	int			index;
 	char		c;
 	t_tetri		*temp;
 	t_tetri		*buff;
 
 	count_tetri = ft_count_tetri(str);
-	index = 0;
 	c = 'A';
 	if (!(temp = (t_tetri*)malloc(sizeof(t_tetri))))
 		return (NULL);
@@ -95,6 +93,7 @@ t_tetri			*ft_save_block(const char *str)
 		temp = ft_coordinates(temp);
 		temp = ft_update_xy(temp);
 		index += 21;
+		ft_check_char(str[index - 1]);
 		if (!(temp->next = (t_tetri *)malloc(sizeof(t_tetri))))
 			return (NULL);
 		temp = temp->next;
@@ -117,11 +116,7 @@ char			*ft_reading(char *str)
 		ft_error();
 	read(fd, buffer, 546);
 	while (buffer[index])
-	{
-		if (buffer[index] == 'a')//  should be deleted
-			buffer[index] = '\n';
 		index++;
-	}
 	if (index < 19)
 		ft_error();
 	close(fd);

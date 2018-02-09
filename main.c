@@ -12,13 +12,13 @@
 
 #include "fillit.h"
 
-void	ft_error(void)
+void		ft_error(void)
 {
 	write(1, "error\n", 6);
-	exit (0);
+	exit(0);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_tetri	*list;
 	char	*reading;
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	reading = ft_reading(argv[1]);
-	list = ft_save_block(reading);
+	list = ft_save_block(reading, 0);
 	result = ft_result(list, ft_max_square(list));
 	free(list);
 	while (*result)

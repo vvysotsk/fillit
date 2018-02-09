@@ -31,7 +31,8 @@ t_tetri	*ft_get_xy(t_tetri *list, char **ar_str)
 				list->y[index] = y;
 				index++;
 			}
-			x++;
+			if (x++ > 4)
+				ft_error();
 		}
 		y++;
 	}

@@ -14,27 +14,22 @@
 
 static char	*ft_structure(char *str, int index)
 {
-	if (str[index] == '#')
-	{
-		str[index] = '+';
-		str = ft_structure(str, index + 1);
-	}
-	if(str[index + 1] == '#')
+	if (str[index + 1] == '#')
 	{
 		str[index + 1] = '+';
 		str = ft_structure(str, index + 1);
 	}
-	if(str[index - 1] >= 0 && str[index - 1] == '#')
+	if (str[index - 1] >= 0 && str[index - 1] == '#')
 	{
 		str[index - 1] = '+';
 		str = ft_structure(str, index - 1);
 	}
-	if(index + 5 <= 20  && str[index + 5] == '#')
+	if (index + 5 <= 20 && str[index + 5] == '#')
 	{
 		str[index + 5] = '+';
 		str = ft_structure(str, index + 5);
 	}
-	if(index - 5 >= 0 && str[index - 5] == '#')
+	if (index - 5 >= 0 && str[index - 5] == '#')
 	{
 		str[index - 5] = '+';
 		str = ft_structure(str, index - 5);
@@ -58,6 +53,18 @@ static int	ft_count_plus(char *str)
 	return (counter);
 }
 
+static void	ft_check_xy(char *str)
+{
+	if (str[4] != '\n')
+		ft_error();
+	else if (str[9] != '\n')
+		ft_error();
+	else if (str[14] != '\n')
+		ft_error();
+	else if (str[19] != '\n')
+		ft_error();
+}
+
 void		ft_check(char *str)
 {
 	int		index;
@@ -66,6 +73,7 @@ void		ft_check(char *str)
 	while (str[index] && str[index] != '#')
 		index++;
 	str[index] = '+';
+	ft_check_xy(str);
 	str = ft_structure(str, index);
 	if (ft_count_plus(str) != 4)
 		ft_error();
@@ -78,23 +86,8 @@ void		ft_check(char *str)
 	}
 }
 
-int			ft_check_map(t_tetri *list, char **result, int max)
+void		ft_check_char(char c)
 {
-	int		count;
-
-	count = 0;
-	while (count < 4)
-	{
-		if ((list->y[count] >= 0 && list->y[count] < max) &&
-			(list->x[count] >= 0 && list->x[count]< max) &&
-			result[list->y[count]][list->x[count]] == '.')
-		{
-			count++;
-			if (count == 4)
-				return (0);
-		}
-		else
-			break;
-	}
-	return (1);
+	if (c == '.' || c == '#')
+		ft_error();
 }

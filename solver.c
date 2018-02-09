@@ -44,12 +44,13 @@ static char	**ft_solve(t_tetri *list, char **result, int max)
 	y = 0;
 	while (y < max)
 	{
-		x =0;
+		x = 0;
 		while (x < max)
 		{
 			list = ft_new_xy(list, x, y);
 			if (ft_check_map(list, result, max) == 0)
-				final_res = ft_solve(list->next, ft_set_char(list, result, max), max);
+				final_res = ft_solve(list->next, \
+					ft_set_char(list, result, max), max);
 			if (final_res)
 				return (final_res);
 			result = ft_reset(list, result, max);
